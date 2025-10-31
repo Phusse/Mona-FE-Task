@@ -128,21 +128,24 @@ const CompletedClaimsDetails = () => {
           <Col span={24}>
             <Card
               title={
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span>Review Damage</span>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span>Review Damage: </span>
                   <Button
                     type="default"
-                    icon={<PlayCircleOutlined />}
                     onClick={showVideo}
                     style={{
                       color: isVideoClicked ? 'white' : '#ff4d4f',
                       borderColor: '#ff4d4f',
+                      marginLeft: "15px",
                       backgroundColor: isVideoClicked ? '#ff4d4f' : 'white',
                       transition: '0.3s ease',
                     }}
                   >
                     Watch Video
+                    
+                  {<PlayCircleOutlined />}
                   </Button>
+                  
                 </div>
               }
             >
@@ -226,7 +229,7 @@ const CompletedClaimsDetails = () => {
 
                   width: '150px',
                   height: '15px',
-                  background: '#1677ff',
+                  background: '#0954bcff',
                   top: '20px',
                   right: '-40px',
                   transform: 'rotate(45deg)',
@@ -237,7 +240,7 @@ const CompletedClaimsDetails = () => {
                   position: 'absolute',
                   width: '150px',
                   height: '15px',
-                  background: '#52c41a',
+                  background: '#30c2eaff',
                   top: '40px',
                   right: '-40px',
                   transform: 'rotate(45deg)',
@@ -252,8 +255,8 @@ const CompletedClaimsDetails = () => {
                   <p style={{ marginTop: 8, fontSize: 14, color: '#555' }}>
                     Aliyu did a great job assisting us with the repairs of my iPhone 13.
                   </p>
-                  <Rate disabled defaultValue={4.5} style={{ fontSize: 16 }} />
-                  <div style={{ fontSize: 12, color: '#999' }}>2 months ago</div>
+                  <Rate  defaultValue={4.5} style={{ fontSize: 16 }} />
+                  <div style={{ fontSize: 12, color: '#999999ff' }}>2 months ago</div>
                 </Col>
 
                 <Col span={6} style={{ textAlign: 'center' }}>
@@ -269,7 +272,7 @@ const CompletedClaimsDetails = () => {
                       margin: 'auto',
                     }}
                   >
-                    <Title level={2} style={{ color: '#52c41a', margin: 0 }}>4.5</Title>
+                    <Title level={2} style={{ color: '#49a918ff', margin: 0 }}>4.5</Title>
                   </div>
                 </Col>
               </Row>
