@@ -77,9 +77,9 @@ const CompletedClaimsDetails = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: '#f0f2f5' }} >
+    <div style={{ backgroundColor: '#f0f2f5'}} >
       <Card>
-        <div style={{ backgroundColor: '#1677ff', color: 'white', padding: '24px', textAlign: 'center', marginBottom: '20px' }}>
+          <div style={{ backgroundColor: '#1677ff', color: 'white', padding: '24px', textAlign: 'center', marginBottom: '20px', marginTop: '-24px', marginLeft: '-24px', marginRight: '-24px' }}>
           <Title level={4} style={{ color: 'white', margin: 0 }}>Repair Claim Details</Title>
         </div>
 
@@ -217,17 +217,30 @@ const CompletedClaimsDetails = () => {
                 boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.05)',
                 padding: '16px',
                 position: 'relative',
+                overflow: 'hidden'
               }}
             >
               <div
                 style={{
                   position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: 0,
-                  height: 0,
-                  borderTop: '40px solid #1677ff',
-                  borderLeft: '40px solid transparent',
+
+                  width: '150px',
+                  height: '15px',
+                  background: '#1677ff',
+                  top: '20px',
+                  right: '-40px',
+                  transform: 'rotate(45deg)',
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  width: '150px',
+                  height: '15px',
+                  background: '#52c41a',
+                  top: '40px',
+                  right: '-40px',
+                  transform: 'rotate(45deg)',
                 }}
               ></div>
 
