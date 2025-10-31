@@ -333,7 +333,7 @@ const CompletedClaimsDetails = () => {
       >
         <div style={{ textAlign: 'center' }}>
           <video width="100%" height="auto" controls>
-            <source src="https://youtu.be/IEqmSROj5Uc?si=AQ7n5Ng8ryTtBO8B" type="video/mp4" />
+            <source src="https://www.youtube.com/watch?v=IEqmSROj5Uc" type="video/mp4" />
             Your browser does not support HTML video.
           </video>
         </div>
