@@ -1,24 +1,44 @@
-
 import React, { useState } from 'react';
-import { Card, Row, Col, Table, Button, Modal, Timeline, Rate, Typography } from 'antd';
-import { PlayCircleOutlined } from '@ant-design/icons';
+import {
+  Card,
+  Row,
+  Col,
+  Table,
+  Button,
+  Modal,
+  Timeline,
+  Rate,
+  Typography,
+  Tag,
+  Progress,
+} from 'antd';
+import {
+  PlayCircleOutlined,
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  SyncOutlined,
+} from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
 const CompletedClaimsDetails = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const [isVideoClicked, setIsVideoClicked] = useState(false);
+  const [isTrackClicked, setIsTrackClicked] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
+    setIsTrackClicked(true);
   };
+  const handleOk = () => setIsModalVisible(false);
+  const handleCancel = () => setIsModalVisible(false);
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const showVideo = () => {
+    setIsVideoVisible(true);
+    setIsVideoClicked(true);
   };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  const handleVideoClose = () => setIsVideoVisible(false);
 
   const deviceColumns = [
     { title: 'Device ID', dataIndex: 'id', key: 'id' },
@@ -57,15 +77,15 @@ const CompletedClaimsDetails = () => {
   ];
 
   return (
-    <div style={{ padding: '24px', backgroundColor: '#f0f2f5' }}>
+    <div style={{ backgroundColor: '#f0f2f5' }} >
       <Card>
-        <div style={{ backgroundColor: '#1890ff', color: 'white', padding: '10px', textAlign: 'center', marginBottom: '20px' }}>
-          <Title level={4} style={{ color: 'white' }}>Repair Claim Details</Title>
+        <div style={{ backgroundColor: '#1677ff', color: 'white', padding: '24px', textAlign: 'center', marginBottom: '20px' }}>
+          <Title level={4} style={{ color: 'white', margin: 0 }}>Repair Claim Details</Title>
         </div>
 
         <Row gutter={[16, 16]}>
           <Col span={24}>
-            <Card title="Claim Information">
+            <Card title="">
               <Text><strong>Claim ID:</strong> 12345678</Text><br />
               <Text><strong>Created On:</strong> 2025-01-15</Text><br />
               <Text><strong>Claim Type:</strong> Accidental Damage</Text><br />
@@ -90,62 +110,233 @@ const CompletedClaimsDetails = () => {
 
           <Col span={24}>
             <Card title="Claims Information">
-              <Table columns={claimsColumns} dataSource={claimsData} pagination={false} footer={() => (
-                <div style={{ textAlign: 'right' }}>
-                  <Text strong>Total: ₦120,000</Text><br />
-                  <Text strong>Amount Payable by Insurer: ₦120,000</Text><br />
-                  <Text strong  >Amount Payable by Mona: ₦120,000</Text>
+              <Table
+                columns={claimsColumns}
+                dataSource={claimsData}
+                pagination={false}
+                footer={() => (
+                  <div style={{ textAlign: 'right' }}>
+                    <Text strong>Total: ₦120,000</Text><br />
+                    <Text strong>Amount Payable by Insurer: ₦120,000</Text><br />
+                    <Text strong style={{ color: '#1677ff' }}>Amount Payable by Mona: ₦120,000</Text>
+                  </div>
+                )}
+              />
+            </Card>
+          </Col>
+
+          <Col span={24}>
+            <Card
+              title={
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span>Review Damage</span>
+                  <Button
+                    type="default"
+                    icon={<PlayCircleOutlined />}
+                    onClick={showVideo}
+                    style={{
+                      color: isVideoClicked ? 'white' : '#ff4d4f',
+                      borderColor: '#ff4d4f',
+                      backgroundColor: isVideoClicked ? '#ff4d4f' : 'white',
+                      transition: '0.3s ease',
+                    }}
+                  >
+                    Watch Video
+                  </Button>
                 </div>
-              )} />
-            </Card>
-          </Col>
-
-          <Col span={24}>
-            <Card title="Review Damage">
-              <Button type="danger" icon={<PlayCircleOutlined />}>Watch Video</Button>
+              }
+            >
               <Title level={5}>General Description</Title>
-              <Text><strong>When:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text><br />
-              <Text><strong>Where:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text><br />
-              <Text><strong>How:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+              <div style={{ width: '100%' }}>
+                <div style={{ marginBottom: '16px' }}>
+                  <Text strong style={{ color: '#000', fontSize: '15px' }}>
+                    When:
+                  </Text>
+                  <div
+                    style={{
+                      backgroundColor: '#e6f4ff',
+                      color: '#1677ff',
+                      fontWeight: 500,
+                      borderRadius: 8,
+                      padding: '12px 16px',
+                      marginTop: '6px',
+                    }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at dui non odio ultricies sollicitudin.
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: '16px' }}>
+                  <Text strong style={{ color: '#000', fontSize: '15px' }}>
+                    Where:
+                  </Text>
+                  <div
+                    style={{
+                      backgroundColor: '#e6f4ff',
+                      color: '#1677ff',
+                      fontWeight: 500,
+                      borderRadius: 8,
+                      padding: '12px 16px',
+                      marginTop: '6px',
+                    }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt felis at viverra euismod.
+                  </div>
+                </div>
+
+                <div>
+                  <Text strong style={{ color: '#000', fontSize: '15px' }}>
+                    How:
+                  </Text>
+                  <div
+                    style={{
+                      backgroundColor: '#e6f4ff',
+                      color: '#1677ff',
+                      fontWeight: 500,
+                      borderRadius: 8,
+                      padding: '12px 16px',
+                      marginTop: '6px',
+                    }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac orci sed metus facilisis accumsan.
+                  </div>
+                </div>
+              </div>
+
+
             </Card>
           </Col>
 
           <Col span={24}>
-            <Card>
-              <Row>
+            <Card
+              style={{
+                width: 400,
+                background: '#fff',
+                border: '1px solid #e6f7ff',
+                borderRadius: '8px',
+                boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.05)',
+                padding: '16px',
+                position: 'relative',
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: 0,
+                  height: 0,
+                  borderTop: '40px solid #1677ff',
+                  borderLeft: '40px solid transparent',
+                }}
+              ></div>
+
+              <Row justify="space-between" align="middle">
                 <Col span={18}>
-                  <Title level={5}>John Doe</Title>
-                  <Text>Claim ID: CL-134783</Text><br/>
-                  <Text>Accidental Damage</Text>
-                  <p>Aliyu did a great job assisting us with the repairs of my Iphone 13.</p>
-                  <Rate disabled defaultValue={4.5} />
-                  <Text>2 months ago</Text>
+                  <Title level={5} style={{ marginBottom: 4 }}>John Doe</Title>
+                  <a href="#" style={{ color: '#1677ff', fontSize: 13 }}>Claim ID: CL-134763</a><br />
+                  <Tag color="blue" style={{ marginTop: 6 }}>Accidental Damage</Tag>
+                  <p style={{ marginTop: 8, fontSize: 14, color: '#555' }}>
+                    Aliyu did a great job assisting us with the repairs of my iPhone 13.
+                  </p>
+                  <Rate disabled defaultValue={4.5} style={{ fontSize: 16 }} />
+                  <div style={{ fontSize: 12, color: '#999' }}>2 months ago</div>
                 </Col>
-                <Col span={6} style={{ textAlign: 'center', backgroundColor: '#e6f7ff', borderRadius: '8px', padding: '10px' }}>
-                  <Title level={2} style={{ color: '#1890ff' }}>4.5</Title>
+
+                <Col span={6} style={{ textAlign: 'center' }}>
+                  <div
+                    style={{
+                      background: '#f6ffed',
+                      borderRadius: '50%',
+                      width: 75,
+                      height: 75,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: 'auto',
+                    }}
+                  >
+                    <Title level={2} style={{ color: '#52c41a', margin: 0 }}>4.5</Title>
+                  </div>
                 </Col>
               </Row>
             </Card>
           </Col>
         </Row>
 
-        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            marginTop: '20px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <div>
             <Text><strong>Approved by:</strong> John Doe</Text><br />
-            <Text><strong>Edited by:</strong> John Doe</Text><br/>
+            <Text><strong>Edited by:</strong> John Doe</Text><br />
             <Text><strong>Date & Time:</strong> 25-02-2025 10:21</Text>
           </div>
-          <Button type="primary" onClick={showModal}>Track Progress</Button>
+
+          <Button
+            type="default"
+            onClick={showModal}
+            style={{
+              color: isTrackClicked ? 'white' : '#1677ff',
+              borderColor: '#1677ff',
+              backgroundColor: isTrackClicked ? '#1677ff' : 'white',
+              transition: '0.3s ease',
+            }}
+          >
+            Track Progress
+          </Button>
         </div>
       </Card>
 
-      <Modal title="Track Claim Progress" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <Timeline>
-          <Timeline.Item>Claim Submitted</Timeline.Item>
-          <Timeline.Item>Under Review</Timeline.Item>
-          <Timeline.Item>Approved</Timeline.Item>
-          <Timeline.Item>Completed</Timeline.Item>
-        </Timeline>
+      <Modal
+        title={<Title level={4} style={{ marginBottom: 0 }}>Claim Progress Overview</Title>}
+        open={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={700}
+        footer={null}
+      >
+        <div style={{ padding: '10px 0' }}>
+          <Progress percent={100} status="active" strokeColor="#1677ff" />
+          <Timeline style={{ marginTop: 20 }}>
+            <Timeline.Item dot={<ClockCircleOutlined style={{ color: '#faad14' }} />}>
+              <Text strong>Claim Submitted</Text>
+              <div><Text type="secondary">Jan 10, 2025 - 09:12 AM</Text></div>
+            </Timeline.Item>
+            <Timeline.Item dot={<SyncOutlined spin style={{ color: '#1890ff' }} />}>
+              <Text strong>Under Review</Text>
+              <div><Text type="secondary">Jan 12, 2025 - 02:30 PM</Text></div>
+            </Timeline.Item>
+            <Timeline.Item dot={<CheckCircleOutlined style={{ color: '#52c41a' }} />}>
+              <Text strong>Approved</Text>
+              <div><Text type="secondary">Jan 15, 2025 - 11:10 AM</Text></div>
+            </Timeline.Item>
+            <Timeline.Item color="green">
+              <Text strong>Completed</Text>
+              <div><Tag color="success">Success</Tag></div>
+            </Timeline.Item>
+          </Timeline>
+        </div>
+      </Modal>
+
+      <Modal
+        title="Damage Review Video"
+        open={isVideoVisible}
+        onCancel={handleVideoClose}
+        footer={null}
+        width={800}
+      >
+        <div style={{ textAlign: 'center' }}>
+          <video width="100%" height="auto" controls>
+            <source src="https://youtu.be/IEqmSROj5Uc?si=AQ7n5Ng8ryTtBO8B" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        </div>
       </Modal>
     </div>
   );
